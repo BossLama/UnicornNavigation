@@ -1,0 +1,119 @@
+*
+{
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+nav.unicorn-navigation,
+nav.unicorn-navigation *
+{
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+nav.unicorn-navigation
+{
+    --unicorn-navigation-padding: 2rem 10%;
+    --unicorn-navigation-font: 'Roboto', sans-serif;
+    --unicorn-navigation-font-color: #000;
+    --unicorn-navigation-background: #fff;
+    --unicorn-navigation-border-color: #e2e2e2;
+
+    font-family: var(--unicorn-navigation-font);
+    color: var(--unicorn-navigation-font-color);
+    background: var(--unicorn-navigation-background);
+    padding: var(--unicorn-navigation-padding);
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    border-bottom: 1px solid var(--unicorn-navigation-border-color);
+}
+
+.unicorn-mobile-controll
+{
+    height: 3rem;
+    width: 3rem;
+
+    background: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+    .unicorn-mobile-controll svg
+    {
+        width: 100%;
+        height: 100%;
+    }
+
+    nav.unicorn-navigation h1.logo
+    {
+        cursor: pointer;
+        font-size: 1.5rem;
+    }
+
+    nav.unicorn-navigation img.logo
+    {
+        cursor: pointer;
+        height: 2rem;
+    }
+
+    nav.unicorn-navigation ul
+    {
+        list-style: none;
+        display: flex;
+    }
+
+        nav.unicorn-navigation ul a
+        {
+            display: flex;
+
+            text-decoration: none;
+            color: var(--unicorn-navigation-font-color);
+            font-weight: 300;
+
+            padding: 1rem 2rem;
+        }
+
+            nav.unicorn-navigation ul a.active,
+            nav.unicorn-navigation ul a:hover
+            {
+                font-weight: 600;
+            }
+
+
+@media screen and (max-width: 768px)
+{
+    nav.unicorn-navigation
+    {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 100vH;
+
+        flex-direction: column;
+        justify-content: flex-start;
+
+        transform: translateX(100%);
+        transition: transform 0.3s ease-out;
+    }
+
+    nav.unicorn-navigation.show
+    {
+        transform: translateX(0);
+    }
+
+        nav.unicorn-navigation ul
+        {
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+
+            height: 100%;
+            width: 100%;
+        }
+}
