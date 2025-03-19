@@ -47,7 +47,6 @@ class UnicornNavigation
         company.textContent = this.company;
         header.appendChild(company);
 
-        let nav = document.createElement("nav");
         let ul = document.createElement("ul");
 
         this.navItems.forEach(item => {
@@ -55,10 +54,38 @@ class UnicornNavigation
             this.printDebug(`Added navigation item: ${item.getLabel()}`);
         });
 
-        nav.appendChild(ul);
-        header.appendChild(nav);
+
+        let mobileToggle = this.getMobileToggle(header);
+        header.appendChild(mobileToggle);
+
+        header.appendChild(ul);
 
         document.body.prepend(header);
+    }
+
+    /**
+     * Returns the mobile toggle button
+     * @returns HTMLElement
+     */
+    private getMobileToggle(parent : HTMLElement) : HTMLElement
+    {
+        let button = document.createElement("button");
+        button.classList.add("mobile-toggle");
+        button.textContent = "☰";
+        button.onclick = () => {
+            parent.classList.toggle("open");
+
+            if(parent.classList.contains("open"))
+            {
+                button.textContent = "✖";
+            }
+            else
+            {
+                button.textContent = "☰";
+            }
+        }
+
+        return button
     }
 
     /**

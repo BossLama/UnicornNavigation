@@ -36,15 +36,34 @@ var UnicornNavigation = /** @class */ (function () {
         company.classList.add("logo");
         company.textContent = this.company;
         header.appendChild(company);
-        var nav = document.createElement("nav");
         var ul = document.createElement("ul");
         this.navItems.forEach(function (item) {
             ul.appendChild(item.getElement());
             _this.printDebug("Added navigation item: ".concat(item.getLabel()));
         });
-        nav.appendChild(ul);
-        header.appendChild(nav);
+        var mobileToggle = this.getMobileToggle(header);
+        header.appendChild(mobileToggle);
+        header.appendChild(ul);
         document.body.prepend(header);
+    };
+    /**
+     * Returns the mobile toggle button
+     * @returns HTMLElement
+     */
+    UnicornNavigation.prototype.getMobileToggle = function (parent) {
+        var button = document.createElement("button");
+        button.classList.add("mobile-toggle");
+        button.textContent = "☰";
+        button.onclick = function () {
+            parent.classList.toggle("open");
+            if (parent.classList.contains("open")) {
+                button.textContent = "✖";
+            }
+            else {
+                button.textContent = "☰";
+            }
+        };
+        return button;
     };
     /**
      * Returns the navigation items

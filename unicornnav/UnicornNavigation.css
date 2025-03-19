@@ -1,4 +1,3 @@
-
 :root
 {
     --unicorn-nav-padding: 1rem 10%;
@@ -44,6 +43,7 @@ header.unicorn-nav
     {
         font-size: 1.5rem;
         font-weight: bold;
+        z-index: 1000;
         
     }
 
@@ -71,10 +71,17 @@ header.unicorn-nav
             padding: 1rem;
             gap: 1rem;
 
+            transform: translateX(100%);
+
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             text-align: center;
         }
     }
+
+        header.unicorn-nav.open ul
+        {
+            transform: translateX(0);
+        }
 
         header.unicorn-nav ul li
         {
@@ -101,6 +108,25 @@ header.unicorn-nav
                 color: var(--unicorn-nav-font-color-active);
                 font-weight: 600;
             }
+
+    header.unicorn-nav .mobile-toggle
+    {
+        height: 3rem;
+        width: 3rem;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        color: var(--unicorn-nav-font-color);
+        font-size: 2rem;
+
+        display: none;
+        z-index: 1000;
+
+        @media only screen and (max-width: 768px)
+        {
+            display: block;
+        }
+    }
 
             
 /* THEMES */
