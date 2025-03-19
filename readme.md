@@ -44,4 +44,15 @@ Beginn des Bodies hinzugefügt.
 
 ```javascript
 unicornNavigation.render();
-````
+```
+
+### Theme festlegen
+Beim Erstellen der Klasse kann ein Parameter "theme" übergeben werden.
+
+```javascript
+let unicornNavigation = new UnicornNavigation('My company', 'theme-dark');
+```
+
+Aktuell gibt es folgende Themes:
+- default
+- theme-dark
