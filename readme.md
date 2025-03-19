@@ -30,6 +30,13 @@ Funktion.
 unicornNavigation.addNavItem("Home", () => {alert("Home")});
 ```
 
+Um ein Item als "aktuelles" Item zu setzen, muss zudem der Parameter
+true übergeben werden.
+
+```javascript
+unicornNavigation.addNavItem("Home", () => {alert("Home")}, true);
+```
+
 ### Navigation rendern
 Führe die Funktion render() aus, um die Navigation auf der
 HTML-Seite anzeigen zu lassen. Diese wird immer am 
