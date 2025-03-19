@@ -1,8 +1,11 @@
-*
+:root
 {
-    box-sizing: border-box;
-    padding: 0;
-    margin: 0;
+    --unicorn-navigation-js-identifier: 'true';
+    --unicorn-navigation-padding: 2rem 10%;
+    --unicorn-navigation-font: 'Roboto', sans-serif;
+    --unicorn-navigation-font-color: #000;
+    --unicorn-navigation-background: #fff;
+    --unicorn-navigation-border-color: #e2e2e2;
 }
 
 nav.unicorn-navigation,
@@ -15,13 +18,6 @@ nav.unicorn-navigation *
 
 nav.unicorn-navigation
 {
-    --unicorn-navigation-js-identifier: 'true';
-    --unicorn-navigation-padding: 2rem 10%;
-    --unicorn-navigation-font: 'Roboto', sans-serif;
-    --unicorn-navigation-font-color: #000;
-    --unicorn-navigation-background: #fff;
-    --unicorn-navigation-border-color: #e2e2e2;
-
     font-family: var(--unicorn-navigation-font);
     color: var(--unicorn-navigation-font-color);
     background: var(--unicorn-navigation-background);
