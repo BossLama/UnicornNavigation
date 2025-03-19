@@ -15,6 +15,7 @@ nav.unicorn-navigation *
 
 nav.unicorn-navigation
 {
+    --unicorn-navigation-js-identifier: 'true';
     --unicorn-navigation-padding: 2rem 10%;
     --unicorn-navigation-font: 'Roboto', sans-serif;
     --unicorn-navigation-font-color: #000;
@@ -118,5 +119,12 @@ nav.unicorn-navigation
         justify-content: center;
 
         background-color: #fff;
+
+        transition: right 0.5s ease;
     }
+
+        nav.unicorn-navigation.show ul
+        {
+            right: 0;
+        }
 }
