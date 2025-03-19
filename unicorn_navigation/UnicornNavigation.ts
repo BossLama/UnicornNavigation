@@ -34,8 +34,15 @@ class UnicornNavigation
     // Renders the navigation
     public render(target: HTMLElement | string): void
     {
-        if(typeof target === 'string') target = document.querySelector(target);
-        if(target === null) return this.logError('Target element not found.');
+        let parent : HTMLElement | null = null;
+        if(typeof target === 'string') parent = document.querySelector(target);
+        else parent = target;
+
+        if(parent === null)
+        {
+            this.logError('Target `'+ target +'` not found.');
+            return;
+        }
 
         let navigation      = document.createElement('ul');
         navigation.classList.add('unicorn-navigation');
@@ -44,7 +51,7 @@ class UnicornNavigation
             navigation.appendChild(item.getHTMLElement());
         });
 
-        target.appendChild(navigation);
+        if(parent !== null) parent.appendChild(navigation);
     }
 
     // Checks if specific CSS is loaded

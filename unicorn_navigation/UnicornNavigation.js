@@ -12,10 +12,35 @@
 */
 var UnicornNavigation = /** @class */ (function () {
     function UnicornNavigation() {
+        this.navigationItems = [];
         if (!this.isCSSLoaded()) {
             this.logError('CSS not loaded. Make sure to include the CSS file before the JS file.');
         }
     }
+    // Adds a new navigation item
+    UnicornNavigation.prototype.addItem = function (label, url, onClicked) {
+        if (onClicked === void 0) { onClicked = null; }
+        this.navigationItems.push(new UnicornNavigationItem(label, url, onClicked));
+    };
+    // Renders the navigation
+    UnicornNavigation.prototype.render = function (target) {
+        var parent = null;
+        if (typeof target === 'string')
+            parent = document.querySelector(target);
+        else
+            parent = target;
+        if (parent === null) {
+            this.logError('Target `' + target + '` not found.');
+            return;
+        }
+        var navigation = document.createElement('ul');
+        navigation.classList.add('unicorn-navigation');
+        this.navigationItems.forEach(function (item) {
+            navigation.appendChild(item.getHTMLElement());
+        });
+        if (parent !== null)
+            parent.appendChild(navigation);
+    };
     // Checks if specific CSS is loaded
     UnicornNavigation.prototype.isCSSLoaded = function () {
         var styles = window.getComputedStyle(document.body);
@@ -29,8 +54,41 @@ var UnicornNavigation = /** @class */ (function () {
     return UnicornNavigation;
 }());
 var UnicornNavigationItem = /** @class */ (function () {
-    function UnicornNavigationItem() {
+    function UnicornNavigationItem(label, url, onClicked) {
+        if (onClicked === void 0) { onClicked = null; }
+        this.label = label;
+        this.url = url;
+        this.onClicked = onClicked;
     }
+    // Returns the label of the navigation item
+    UnicornNavigationItem.prototype.getLabel = function () {
+        return this.label;
+    };
+    // Returns the URL of the navigation item
+    UnicornNavigationItem.prototype.getUrl = function () {
+        return this.url;
+    };
+    // Calls the onClicked function
+    UnicornNavigationItem.prototype.onClick = function () {
+        if (this.onClicked !== null)
+            this.onClicked(this.label);
+    };
+    // Get the HTMLElement of the navigation item
+    UnicornNavigationItem.prototype.getHTMLElement = function () {
+        var _this = this;
+        var listItem = document.createElement('li');
+        var element = document.createElement('a');
+        element.innerText = this.label;
+        if (this.onClicked !== null) {
+            element.onclick = function () { return _this.onClick(); };
+            element.href = '#';
+        }
+        else {
+            element.href = this.url;
+        }
+        listItem.appendChild(element);
+        return listItem;
+    };
     return UnicornNavigationItem;
 }());
 document.addEventListener('DOMContentLoaded', function () {
