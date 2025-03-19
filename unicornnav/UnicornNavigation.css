@@ -2,8 +2,23 @@
 :root
 {
     --unicorn-nav-padding: 1rem 10%;
+    --unicorn-nav-font: Arial, sans-serif;
+
+    /* Werden durch Themes überschrieben */
+    --unicorn-nav-font-color: #333;
+    --unicorn-nav-font-color-hover: #666;
+    --unicorn-nav-font-color-active: #000;
+
+    --unicorn-nav-bg-color: #fff;
 }
 
+header.unicorn-nav *,
+header.unicorn-nav
+{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
 header.unicorn-nav
 {
@@ -12,20 +27,24 @@ header.unicorn-nav
     left: 0;
     right: 0;
     z-index: 1000;
-    background-color: #fff;
+    background-color: var(--unicorn-nav-bg-color);
+    color: var(--unicorn-nav-font-color);
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: var(--unicorn-nav-padding);
+
+    font-family: var(--unicorn-nav-font);
+    min-height: 10vH;
 }
 
     header.unicorn-nav .logo
     {
         font-size: 1.5rem;
         font-weight: bold;
-        color: #333;
+        
     }
 
     header.unicorn-nav ul
@@ -34,10 +53,62 @@ header.unicorn-nav
         list-style: none;
         align-items: center;
         gap: 1rem;
+
+        @media only screen and (max-width: 768px)
+        {
+            position: fixed;
+            top: 0;
+            right: 0;
+            bottom: 0;
+
+            width: 100%;
+            max-width: 400px;
+            background-color: var(--unicorn-nav-bg-color);
+            transition: transform 0.3s;
+
+            flex-direction: column;
+            justify-content: center;
+            padding: 1rem;
+            gap: 1rem;
+
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
     }
+
+        header.unicorn-nav ul li
+        {
+            width: 100%;
+            display: flex;
+        }
 
         header.unicorn-nav li a
         {
-            color: #333;
-            text-decoration: none;;
+            color: var(--unicorn-nav-font-color);
+            text-decoration: none;
+            transition: color 0.3s;
+            font-weight: 300;
+            width: 100%;
         }
+
+            header.unicorn-nav li a:hover
+            {
+                color: var(--unicorn-nav-font-color-hover);
+            }
+
+            header.unicorn-nav li a.active
+            {
+                color: var(--unicorn-nav-font-color-active);
+                font-weight: 600;
+            }
+
+            
+/* THEMES */
+header.unicorn-nav.theme-dark
+{
+    --unicorn-nav-font-color: #fff;
+    --unicorn-nav-font-color-hover: #ccc;
+    --unicorn-nav-font-color-active: #ffc2c2;
+
+    --unicorn-nav-bg-color: #333;
+}

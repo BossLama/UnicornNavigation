@@ -5,7 +5,7 @@ class UnicornNavigation
     private theme : string;
     private navItems : Array<NavigationItem>;
 
-    constructor(company : string = 'UniNav', theme : string = 'default')
+    constructor(company : string = 'UnicornNavigation', theme : string = 'default')
     {
         this.debug_enabled = false;
         this.company = company;
@@ -19,9 +19,9 @@ class UnicornNavigation
      * @param onClick
      * @returns void 
      */
-    public addNavItem(label : string, onClick : Function) : void
+    public addNavItem(label : string, onClick : Function, isActive : boolean = false) : void
     {
-        this.navItems.push(new NavigationItem(label, onClick));
+        this.navItems.push(new NavigationItem(label, onClick, isActive));
     }
 
     /**
@@ -43,6 +43,7 @@ class UnicornNavigation
         header.classList.add(this.theme);
         
         let company = document.createElement("h1");
+        company.classList.add("logo");
         company.textContent = this.company;
         header.appendChild(company);
 
@@ -98,11 +99,13 @@ class NavigationItem
 
     private label : string;
     private onClick : Function;
+    private isActive : boolean;
 
-    constructor(label : string, onClick : Function)
+    constructor(label : string, onClick : Function, isActive : boolean = false)
     {
         this.label = label;
         this.onClick = onClick;
+        this.isActive = isActive;
     }
 
     public click() : void
@@ -121,6 +124,12 @@ class NavigationItem
         let a = document.createElement("a");
         a.href = "#";
         a.textContent = this.label;
+
+        if(this.isActive)
+        {
+            a.classList.add("active");
+        }
+
         a.onclick = () => this.onClick();
         li.appendChild(a);
         return li;

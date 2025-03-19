@@ -1,6 +1,6 @@
 var UnicornNavigation = /** @class */ (function () {
     function UnicornNavigation(company, theme) {
-        if (company === void 0) { company = 'UniNav'; }
+        if (company === void 0) { company = 'UnicornNavigation'; }
         if (theme === void 0) { theme = 'default'; }
         this.debug_enabled = false;
         this.company = company;
@@ -13,8 +13,9 @@ var UnicornNavigation = /** @class */ (function () {
      * @param onClick
      * @returns void
      */
-    UnicornNavigation.prototype.addNavItem = function (label, onClick) {
-        this.navItems.push(new NavigationItem(label, onClick));
+    UnicornNavigation.prototype.addNavItem = function (label, onClick, isActive) {
+        if (isActive === void 0) { isActive = false; }
+        this.navItems.push(new NavigationItem(label, onClick, isActive));
     };
     /**
      * Render the navigation to top of the page
@@ -32,6 +33,7 @@ var UnicornNavigation = /** @class */ (function () {
         header.classList.add("unicorn-nav");
         header.classList.add(this.theme);
         var company = document.createElement("h1");
+        company.classList.add("logo");
         company.textContent = this.company;
         header.appendChild(company);
         var nav = document.createElement("nav");
@@ -72,9 +74,11 @@ var UnicornNavigation = /** @class */ (function () {
     return UnicornNavigation;
 }());
 var NavigationItem = /** @class */ (function () {
-    function NavigationItem(label, onClick) {
+    function NavigationItem(label, onClick, isActive) {
+        if (isActive === void 0) { isActive = false; }
         this.label = label;
         this.onClick = onClick;
+        this.isActive = isActive;
     }
     NavigationItem.prototype.click = function () {
         this.onClick();
@@ -88,6 +92,9 @@ var NavigationItem = /** @class */ (function () {
         var a = document.createElement("a");
         a.href = "#";
         a.textContent = this.label;
+        if (this.isActive) {
+            a.classList.add("active");
+        }
         a.onclick = function () { return _this.onClick(); };
         li.appendChild(a);
         return li;

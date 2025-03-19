@@ -8,11 +8,11 @@
     <script src="./UnicornNavigation.js"></script>
     <script>
         window.onload = function() {
-            var nav = new UnicornNavigation('My company');
+            var nav = new UnicornNavigation();
             nav.enableDebug();
 
             nav.addNavItem("Home", () => {alert("Home")});
-            nav.addNavItem("About", () => {alert("About")});
+            nav.addNavItem("About", () => {alert("About")}, true);
             nav.addNavItem("Contact", () => {alert("Contact")});
 
             nav.render();
